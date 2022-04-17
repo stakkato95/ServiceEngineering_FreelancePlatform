@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.stakkato95.freelance
+testFramework: junit
+sourceLanguage: java
+buildTool: maven
+features: [ annotation-api, app-name, data, data-jpa, hibernate-jpa, http-client, jackson-databind, java, java-application, jdbc-hikari, junit, logback, maven, netty-server, postgres, readme, shade, testcontainers, yaml ]
