@@ -2,6 +2,7 @@ package com.stakkato95.freelance.api;
 
 import com.stakkato95.freelance.domain.Customer;
 import com.stakkato95.freelance.repository.CustomerRepository;
+import com.stakkato95.freelance.repository.CustomerRepositoryImpl;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
@@ -20,7 +21,7 @@ public class HelloController {
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
 
     @Inject
-    CustomerRepository repository;
+    CustomerRepositoryImpl repository;
 
     @Get
     @Produces(MediaType.TEXT_PLAIN)
@@ -32,7 +33,7 @@ public class HelloController {
     public void postConstruct() {
         LOGGER.info("created");
         var c = new Customer();
-        c.firstName = "first";
+        c.setFirstName("first");
         repository.save(c);
     }
 }

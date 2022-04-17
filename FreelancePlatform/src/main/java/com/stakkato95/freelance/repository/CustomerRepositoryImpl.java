@@ -1,24 +1,12 @@
 package com.stakkato95.freelance.repository;
 
 import com.stakkato95.freelance.domain.Customer;
-import jakarta.inject.Singleton;
+import io.micronaut.data.annotation.Repository;
+import io.micronaut.data.jpa.repository.JpaRepository;
 
-import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
+@Repository
+public abstract class CustomerRepositoryImpl implements JpaRepository<Customer, Long> {
 
-@Singleton
-public class CustomerRepositoryImpl implements CustomerRepository {
-
-    //    @PersistenceContext
-    private final EntityManager manager;
-
-    public CustomerRepositoryImpl(EntityManager manager) {
-        this.manager = manager;
-    }
-
-    @Override
-    @Transactional
-    public void save(Customer customer) {
-        manager.persist(customer);
-    }
+//    @PersistenceContext
+//    private EntityManager manager;
 }
