@@ -122,11 +122,33 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- added manually -->
         <dependency>
             <groupId>org.fusesource.jansi</groupId>
             <artifactId>jansi</artifactId>
             <version>2.4.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>2.2.3</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.micronaut.data</groupId>
+            <artifactId>micronaut-data-hibernate-jpa</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.micronaut</groupId>
+            <artifactId>micronaut-inject-java</artifactId>
+            <version>3.4.2</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -134,6 +156,21 @@
             <plugin>
                 <groupId>io.micronaut.build</groupId>
                 <artifactId>micronaut-maven-plugin</artifactId>
+                <version>3.2.3</version>
+                <configuration>
+                    <watches>
+                        <watch>
+                            <directory>src/main/resources</directory>
+                            <includes>
+                                <include>**/*.yml</include>
+                                <include>**/*.properties</include>
+                            </includes>
+                            <excludes>
+                                <exclude>test.properties</exclude>
+                            </excludes>
+                        </watch>
+                    </watches>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -141,7 +178,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <!-- Uncomment to enable incremental compilation -->
-                    <!-- <useIncrementalCompilation>false</useIncrementalCompilation> -->
+                    <useIncrementalCompilation>true</useIncrementalCompilation>
 
                     <annotationProcessorPaths combine.children="append">
                         <path>
@@ -153,6 +190,10 @@
                             <groupId>io.micronaut.data</groupId>
                             <artifactId>micronaut-data-processor</artifactId>
                             <version>${micronaut.data.version}</version>
+                        </path>
+                        <path>
+                            <groupId>io.micronaut.data</groupId>
+                            <artifactId>micronaut-data-hibernate-jpa</artifactId>
                         </path>
                     </annotationProcessorPaths>
                     <compilerArgs>
