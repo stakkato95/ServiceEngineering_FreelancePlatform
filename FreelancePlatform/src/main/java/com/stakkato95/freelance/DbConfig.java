@@ -1,4 +1,4 @@
-package com.stakkato95.freelance.domain;
+package com.stakkato95.freelance;
 
 public class DbConfig {
 
