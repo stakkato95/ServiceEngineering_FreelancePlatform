@@ -31,6 +31,7 @@ public class Project {
 //    @JoinColumn
 //    Client client;
 
+    //TODO create tables in Postgres manually (with cascade behavior on delete)
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "project_freelancer",

@@ -40,6 +40,8 @@ public class HelloController {
     @Get
     @Produces(MediaType.TEXT_PLAIN)
     public String hell() {
+        //TODO nice return http codes, headers, payloads
+        //https://guides.micronaut.io/latest/micronaut-jpa-hibernate-maven-java.html
         return "hello";
     }
 
@@ -75,5 +77,7 @@ public class HelloController {
         var fOptionalNew = freelancerRepo.findById(f.getId());
         var name = fOptionalNew.get().getProjects().get(0).getName();
         LOGGER.error("{}", name);
+
+        freelancerRepo.delete(fOptionalNew.get());
     }
 }
