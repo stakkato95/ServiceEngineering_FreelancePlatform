@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 import static com.stakkato95.freelance.DbConfig.DB;
 import static com.stakkato95.freelance.DbConfig.TABLE_NAMESPACE;
@@ -22,9 +24,12 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @NotBlank
     String firstName;
 
+    @NotBlank
     String secondName;
 
+    @Email
     String email;
 }

@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 import static com.stakkato95.freelance.DbConfig.DB;
@@ -23,18 +26,21 @@ public class Freelancer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @NotBlank
     String firstName;
 
-    //TODO validation for fields
+    @NotBlank
     String secondName;
 
+    @NotBlank
     String nickName;
 
+    @Email
     String email;
 
 //    @Lob
 //    List<String> technologies;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "freelancers", fetch = FetchType.EAGER)
-    List<Project> projects;
+    List<@NotNull Project> projects;
 }

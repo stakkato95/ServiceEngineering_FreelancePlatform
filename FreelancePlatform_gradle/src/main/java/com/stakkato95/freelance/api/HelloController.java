@@ -52,13 +52,13 @@ public class HelloController {
                 "first",
                 "second",
                 "nick",
-                "mail",
+                "a@a.a",
                 emptyList()/*,
                 List.of("tech1", "tech2")*/
         );
         freelancerRepo.save(f);
 
-        var c = new Client(null, "first", "second", "mail");
+        var c = new Client(null, "first", "second", "a@a.a");
         customerRepo.save(c);
 
         var fOptional = freelancerRepo.findById(f.getId());

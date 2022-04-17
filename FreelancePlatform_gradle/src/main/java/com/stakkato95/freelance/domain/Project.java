@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 import static com.stakkato95.freelance.DbConfig.DB;
@@ -23,6 +24,7 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @NotBlank
     String name;
 
 //    @OneToOne(cascade = CascadeType.ALL, optional = false)
