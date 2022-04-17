@@ -60,7 +60,7 @@ public class HelloController {
         );
         freelancerRepo.save(f);
 
-        var c = new Client(null, "first", "second", "a@a.a");
+        var c = new Client(null, "first", "second", "a@a.a", emptyList());
         customerRepo.save(c);
 
         var fOptional = freelancerRepo.findById(f.getId());
@@ -70,7 +70,7 @@ public class HelloController {
         }
 
         var f1 = fOptional.get();
-        var p = new Project(null, "proj", List.of(f1));
+        var p = new Project(null, "proj", c, List.of(f1));
         f1.getProjects().add(p);
         p = projectRepo.merge(p);
 
@@ -78,6 +78,6 @@ public class HelloController {
         var name = fOptionalNew.get().getProjects().get(0).getName();
         LOGGER.error("{}", name);
 
-        freelancerRepo.delete(fOptionalNew.get());
+//        freelancerRepo.delete(fOptionalNew.get());
     }
 }

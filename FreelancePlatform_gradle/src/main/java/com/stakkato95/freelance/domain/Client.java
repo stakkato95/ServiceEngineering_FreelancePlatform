@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import java.util.List;
 
 import static com.stakkato95.freelance.DbConfig.DB;
 import static com.stakkato95.freelance.DbConfig.TABLE_NAMESPACE;
@@ -32,4 +35,7 @@ public class Client {
 
     @Email
     String email;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client", fetch = FetchType.EAGER)
+    List<@NotNull Project> projects;
 }
