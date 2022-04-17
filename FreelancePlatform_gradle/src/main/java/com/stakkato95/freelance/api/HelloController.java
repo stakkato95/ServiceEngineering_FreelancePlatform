@@ -14,19 +14,17 @@ import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.ExecuteOn;
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Inject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Collections.emptyList;
 
+@Slf4j
 @ExecuteOn(TaskExecutors.IO)
 @Controller("/hello")
 public class HelloController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
 
     @Inject
     ClientRepository customerRepo;
@@ -47,7 +45,7 @@ public class HelloController {
 
     @PostConstruct
     public void postConstruct() {
-        LOGGER.info("created");
+        log.info("created");
 
         var f = new Freelancer(
                 null,
@@ -65,7 +63,7 @@ public class HelloController {
 
         var fOptional = freelancerRepo.findById(f.getId());
         if (fOptional.isEmpty()) {
-            LOGGER.error("optional freelance is empty");
+            log.error("optional freelance is empty");
             return;
         }
 
@@ -76,8 +74,10 @@ public class HelloController {
 
         var fOptionalNew = freelancerRepo.findById(f.getId());
         var name = fOptionalNew.get().getProjects().get(0).getName();
-        LOGGER.error("{}", name);
+        log.error("{}", name);
 
 //        freelancerRepo.delete(fOptionalNew.get());
+        Optional<Project> pOptional = projectRepo.findById(p.getId());
+        log.error("{}", pOptional.get().getName());
     }
 }
