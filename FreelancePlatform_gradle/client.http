@@ -1,0 +1,10 @@
+### Create a freelancer
+POST http://localhost:8080/freelancer
+Content-Type: application/json
+
+{
+  "firstName": "first",
+  "secondName": "second",
+  "nickName": "nick",
+  "email": "a@a.a"
+}

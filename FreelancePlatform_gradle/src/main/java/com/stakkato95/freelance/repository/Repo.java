@@ -1,13 +1,18 @@
 package com.stakkato95.freelance.repository;
 
-import com.stakkato95.freelance.domain.Project;
-import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.jpa.repository.JpaRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-@Repository
-public abstract class ProjectRepository extends Repo<Project> {
+public abstract class Repo<T> implements JpaRepository<T, Long> {
+
+    @PersistenceContext
+    EntityManager em;
+
+    @Transactional
+    public T merge(T t) {
+        return em.merge(t);
+    }
 }
