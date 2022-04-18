@@ -1,10 +1,33 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("io.micronaut.application") version "3.3.2"
+    id 'com.google.cloud.tools.jib' version '3.2.1'
 }
 
 version = "0.1"
 group = "com.stakkato95.freelance"
+
+jib {
+    from {
+        image = "openjdk:17.0.2-jdk"
+    }
+    to {
+        image = "docker.io/stakkato95/freelance-platform"
+        tags = [version, 'latest']
+    }
+    container {
+        mainClass = "${group}.Application"
+        jvmFlags = ["-Xms256m", '-Xdebug']
+        ports = ['80']
+        volumes = ['/data']
+//        environment = [
+//                'VERSION': version,
+//                'DATA_DIR': '/data',
+//                'APPLICATION_PORT' : '80',
+//                'DEVELOPMENT_MODE' : 'false'
+//        ]
+    }
+}
 
 repositories {
     mavenCentral()
