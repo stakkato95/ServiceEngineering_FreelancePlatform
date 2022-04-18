@@ -15,7 +15,7 @@ import static com.stakkato95.freelance.DbConfig.TABLE_NAMESPACE;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"client", "freelancers"})
+@ToString(exclude = {/*"client",*/ "freelancers"})
 @Entity
 @Table(catalog = DB, schema = TABLE_NAMESPACE, name = Project.PROJECT)
 public class Project {
@@ -29,9 +29,9 @@ public class Project {
     @NotBlank
     String name;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id")
-    Client client;
+//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "client_id")
+//    Client client;
 
     //TODO create tables in Postgres manually (with cascade behavior on delete)
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
