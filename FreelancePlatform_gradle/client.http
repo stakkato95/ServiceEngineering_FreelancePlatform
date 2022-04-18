@@ -8,3 +8,9 @@ Content-Type: application/json
   "nickName": "nick",
   "email": "a@a.a"
 }
+
+### Get an existing freelancer
+GET http://localhost:8080/freelancer/1
+
+### Get an non-existing freelancer
+GET http://localhost:8080/freelancer/100500
