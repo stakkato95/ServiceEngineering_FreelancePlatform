@@ -1,5 +1,7 @@
 package com.stakkato95.freelance.api.controller;
 
+import com.stakkato95.freelance.api.dto.FreelancerDto;
+import com.stakkato95.freelance.api.mapper.FreelancerMapper;
 import com.stakkato95.freelance.domain.Freelancer;
 import com.stakkato95.freelance.repository.FreelancerRepository;
 import io.micronaut.http.HttpResponse;
@@ -23,14 +25,17 @@ public class FreelancerController {
 
     static final String ENDPOINT = "/freelancer";
 
+    private static final FreelancerMapper MAPPER = FreelancerMapper.INSTANCE;
+
     @Inject
     FreelancerRepository repo;
 
     @Post
-    HttpResponse<Freelancer> create(@Body @Valid Freelancer freelancer) {
-        var savedFreelancer = repo.save(freelancer);
+    HttpResponse<Freelancer> create(@Body @Valid FreelancerDto dto) {
+        var entity = MAPPER.toEntity(dto);
+        var freelancer = repo.save(entity);
         return HttpResponse
-                .created(savedFreelancer)
-                .headers(headers -> headers.location(createdLocation(ENDPOINT, savedFreelancer.getId())));
+                .created(freelancer)
+                .headers(headers -> headers.location(createdLocation(ENDPOINT, freelancer.getId())));
     }
 }

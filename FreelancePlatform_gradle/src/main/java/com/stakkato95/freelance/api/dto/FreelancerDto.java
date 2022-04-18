@@ -2,12 +2,13 @@ package com.stakkato95.freelance.api.dto;
 
 import com.stakkato95.freelance.domain.Project;
 import io.micronaut.core.annotation.Introspected;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@Data
+@AllArgsConstructor
 @Introspected
 public class FreelancerDto {
 
