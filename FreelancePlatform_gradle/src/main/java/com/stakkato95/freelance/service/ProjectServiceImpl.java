@@ -5,9 +5,11 @@ import com.stakkato95.freelance.domain.transport.NewProject;
 import com.stakkato95.freelance.repository.ClientRepository;
 import com.stakkato95.freelance.repository.FreelancerRepository;
 import com.stakkato95.freelance.repository.ProjectRepository;
+import io.micronaut.transaction.annotation.ReadOnly;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Singleton
@@ -23,6 +25,7 @@ public class ProjectServiceImpl implements ProjectService {
     ClientRepository clientRepo;
 
     @Override
+    @Transactional
     public Project createProject(NewProject newProject) throws IllegalArgumentException {
         var freelancers = newProject.getFreelancerIds()
                 .stream()
@@ -44,6 +47,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    @ReadOnly
     public Optional<Project> findProject(Long id) {
         return projectRepo.findById(id);
     }
