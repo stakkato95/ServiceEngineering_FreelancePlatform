@@ -43,3 +43,9 @@ Content-Type: application/json
 
 ### Get an existing project
 GET http://localhost:{{port}}/project/1
+
+### Check liveness
+GET http://localhost:{{port}}/health/liveness
+
+### Check readiness
+GET http://localhost:{{port}}/health/readiness

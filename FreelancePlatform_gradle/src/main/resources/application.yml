@@ -15,6 +15,11 @@ jpa.default.properties.hibernate.hbm2ddl.auto: create-drop
 jpa.default.properties.hibernate.hbm2ddl.show_sql: true
 jpa.default.entity-scan.packages: com.stakkato95.freelance
 
+endpoints:
+  health:
+    enabled: true
+    sensitive: false
+
 netty:
   default:
     allocator:

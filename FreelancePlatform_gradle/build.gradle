@@ -40,6 +40,7 @@ dependencies {
     implementation 'io.micronaut:micronaut-http-server-netty:3.4.2'
     implementation 'io.micronaut:micronaut-jackson-databind:3.4.2'
     implementation 'io.micronaut:micronaut-runtime:3.4.2'
+    implementation 'io.micronaut:micronaut-management:3.4.2'
 
     implementation 'io.micronaut.data:micronaut-data-hibernate-jpa:3.3.0'
     implementation 'io.micronaut.sql:micronaut-hibernate-jpa:4.2.2'
