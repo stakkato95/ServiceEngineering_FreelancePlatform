@@ -2,6 +2,7 @@ package com.stakkato95.freelance.api.controller;
 
 import com.stakkato95.freelance.api.dto.NewProjectDto;
 import com.stakkato95.freelance.api.dto.ProjectDto;
+import com.stakkato95.freelance.api.mapper.CycleAvoidingMappingContext;
 import com.stakkato95.freelance.api.mapper.ProjectMapper;
 import com.stakkato95.freelance.service.ProjectService;
 import io.micronaut.http.HttpResponse;
@@ -31,11 +32,14 @@ public class ProjectController {
     @Inject
     ProjectService service;
 
+    @Inject
+    CycleAvoidingMappingContext ctx;
+
     @Post
     HttpResponse<ProjectDto> create(@Body @Valid NewProjectDto dto) {
-        var newProject = MAPPER.toEntity(dto);
+        var newProject = MAPPER.toEntity(dto, ctx);
         var createdEntity = service.createProject(newProject);
-        var savedDto = MAPPER.toDto(createdEntity);
+        var savedDto = MAPPER.toDto(createdEntity, ctx);
         return HttpResponse
                 .created(savedDto)
                 .headers(headers -> headers.location(createdLocation(ENDPOINT, savedDto.getId())));
@@ -44,7 +48,7 @@ public class ProjectController {
     @Get("/{id}")
     HttpResponse<ProjectDto> get(Long id) {
         return service.findProject(id)
-                .map(MAPPER::toDto)
+                .map(proj -> MAPPER.toDto(proj, ctx))
                 .map(HttpResponse::ok)
                 .orElse(HttpResponse.notFound());
     }

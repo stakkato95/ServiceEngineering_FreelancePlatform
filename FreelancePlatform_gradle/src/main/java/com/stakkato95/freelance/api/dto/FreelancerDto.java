@@ -1,6 +1,6 @@
 package com.stakkato95.freelance.api.dto;
 
-import com.stakkato95.freelance.domain.Project;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.micronaut.core.annotation.Introspected;
 import lombok.Data;
 
@@ -11,19 +11,19 @@ import java.util.List;
 @Data
 @Introspected
 public class FreelancerDto {
-    private Long id;
+    Long id;
 
     @NotBlank
-    private String firstName;
+    String firstName;
 
     @NotBlank
-    private String secondName;
+    String secondName;
 
     @NotBlank
-    private String nickName;
+    String nickName;
 
     @Email
-    private String email;
+    String email;
 
-    List<Project> projects;
+    List<ProjectDto> projects;
 }

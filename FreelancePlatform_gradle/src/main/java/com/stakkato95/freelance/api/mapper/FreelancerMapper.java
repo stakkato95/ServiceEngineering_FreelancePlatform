@@ -2,18 +2,16 @@ package com.stakkato95.freelance.api.mapper;
 
 import com.stakkato95.freelance.api.dto.FreelancerDto;
 import com.stakkato95.freelance.domain.Freelancer;
+import org.mapstruct.Context;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(uses = {NestedProjectMapper.class})
 public interface FreelancerMapper {
 
     FreelancerMapper INSTANCE = Mappers.getMapper(FreelancerMapper.class);
 
-    @Mapping(target = "projects", ignore = true)
-    FreelancerDto toDto(Freelancer entity);
+    FreelancerDto toDto(Freelancer entity, @Context CycleAvoidingMappingContext context);
 
-    @Mapping(target = "projects", ignore = true)
-    Freelancer toEntity(FreelancerDto dto);
+    Freelancer toEntity(FreelancerDto dto, @Context CycleAvoidingMappingContext context);
 }
