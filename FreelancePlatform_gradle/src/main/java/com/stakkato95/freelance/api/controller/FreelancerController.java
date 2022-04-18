@@ -25,16 +25,17 @@ public class FreelancerController {
 
     static final String ENDPOINT = "/freelancer";
 
-    private static final FreelancerMapper MAPPER = FreelancerMapper.INSTANCE;
+    @Inject
+    FreelancerMapper mapper;
 
     @Inject
     FreelancerRepository repo;
 
     @Post
     HttpResponse<FreelancerDto> create(@Body @Valid FreelancerDto dto) {
-        var entity = MAPPER.toEntity(dto);
+        var entity = mapper.toEntity(dto);
         var savedEntity = repo.save(entity);
-        var savedDto = MAPPER.toDto(savedEntity);
+        var savedDto = mapper.toDto(savedEntity);
         return HttpResponse
                 .created(savedDto)
                 .headers(headers -> headers.location(createdLocation(ENDPOINT, savedDto.getId())));
@@ -44,7 +45,7 @@ public class FreelancerController {
     HttpResponse<FreelancerDto> get(Long id) {
         var freelancer = repo.findById(id);
         return freelancer
-                .map(MAPPER::toDto)
+                .map(mapper::toDto)
                 .map(HttpResponse::ok)
                 .orElse(HttpResponse.notFound());
     }

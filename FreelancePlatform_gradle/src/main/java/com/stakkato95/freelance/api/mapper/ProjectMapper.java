@@ -7,7 +7,7 @@ import com.stakkato95.freelance.domain.transport.NewProject;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(uses = NestedMapper.class)
+@Mapper(componentModel = "jakarta", uses = NestedMapper.class)
 public interface ProjectMapper {
 
     ProjectMapper INSTANCE = Mappers.getMapper(ProjectMapper.class);

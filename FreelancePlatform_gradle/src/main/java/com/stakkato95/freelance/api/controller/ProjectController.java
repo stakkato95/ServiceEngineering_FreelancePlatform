@@ -26,16 +26,17 @@ public class ProjectController {
 
     static final String ENDPOINT = "/project";
 
-    private static final ProjectMapper MAPPER = ProjectMapper.INSTANCE;
+    @Inject
+    ProjectMapper mapper;
 
     @Inject
     ProjectService service;
 
     @Post
     HttpResponse<ProjectDto> create(@Body @Valid NewProjectDto dto) {
-        var newProject = MAPPER.toEntity(dto);
+        var newProject = mapper.toEntity(dto);
         var createdEntity = service.createProject(newProject);
-        var savedDto = MAPPER.toDto(createdEntity);
+        var savedDto = mapper.toDto(createdEntity);
         return HttpResponse
                 .created(savedDto)
                 .headers(headers -> headers.location(createdLocation(ENDPOINT, savedDto.getId())));
@@ -44,7 +45,7 @@ public class ProjectController {
     @Get("/{id}")
     HttpResponse<ProjectDto> get(Long id) {
         return service.findProject(id)
-                .map(MAPPER::toDto)
+                .map(mapper::toDto)
                 .map(HttpResponse::ok)
                 .orElse(HttpResponse.notFound());
     }

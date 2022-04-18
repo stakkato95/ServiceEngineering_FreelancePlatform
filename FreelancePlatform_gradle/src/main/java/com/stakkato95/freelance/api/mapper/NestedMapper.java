@@ -7,7 +7,7 @@ import com.stakkato95.freelance.domain.Project;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper
+@Mapper(componentModel = "jakarta")
 public interface NestedMapper {
 
     @Mapping(target = "projects", ignore = true)
