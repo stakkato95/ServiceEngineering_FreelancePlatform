@@ -4,7 +4,7 @@ micronaut:
 
 datasources:
   default:
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:31111}/freelance
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:31111}/postgres
     driverClassName: org.postgresql.Driver
     username: postgres
     password: '12345'

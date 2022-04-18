@@ -1,5 +1,5 @@
 ### Create a freelancer
-POST http://localhost:8080/freelancer
+POST http://localhost:{{port}}/freelancer
 Content-Type: application/json
 
 {
@@ -10,13 +10,13 @@ Content-Type: application/json
 }
 
 ### Get an existing freelancer
-GET http://localhost:8080/freelancer/1
+GET http://localhost:{{port}}/freelancer/1
 
 ### Get an non-existing freelancer
-GET http://localhost:8080/freelancer/100500
+GET http://localhost:{{port}}/freelancer/100500
 
 ### Create a client
-POST http://localhost:8080/client
+POST http://localhost:{{port}}/client
 Content-Type: application/json
 
 {
@@ -26,13 +26,13 @@ Content-Type: application/json
 }
 
 ### Get an existing client
-GET http://localhost:8080/client/1
+GET http://localhost:{{port}}/client/1
 
 ### Get an non-existing freelancer
-GET http://localhost:8080/client/100500
+GET http://localhost:{{port}}/client/100500
 
 ### Create a project
-POST http://localhost:8080/project
+POST http://localhost:{{port}}/project
 Content-Type: application/json
 
 {
@@ -42,4 +42,4 @@ Content-Type: application/json
 }
 
 ### Get an existing project
-GET http://localhost:8080/project/1
+GET http://localhost:{{port}}/project/1
