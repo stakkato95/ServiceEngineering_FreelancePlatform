@@ -36,6 +36,6 @@ public class Client {
     @Email
     String email;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client", fetch = FetchType.EAGER)
-//    List<@NotNull Project> projects;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client", fetch = FetchType.EAGER)
+    List<@NotNull Project> projects;
 }

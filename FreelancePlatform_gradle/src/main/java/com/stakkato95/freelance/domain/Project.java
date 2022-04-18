@@ -29,9 +29,9 @@ public class Project {
     @NotBlank
     String name;
 
-//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "client_id")
-//    Client client;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id")
+    Client client;
 
     //TODO create tables in Postgres manually (with cascade behavior on delete)
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

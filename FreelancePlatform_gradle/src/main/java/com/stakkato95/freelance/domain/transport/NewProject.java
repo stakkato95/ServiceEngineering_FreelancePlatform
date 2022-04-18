@@ -7,6 +7,6 @@ import java.util.List;
 @Data
 public class NewProject {
     String name;
-    //    Client client;
+    long clientId;
     List<Long> freelancerIds;
 }

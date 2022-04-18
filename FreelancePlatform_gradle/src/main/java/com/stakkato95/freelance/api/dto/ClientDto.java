@@ -3,18 +3,23 @@ package com.stakkato95.freelance.api.dto;
 import io.micronaut.core.annotation.Introspected;
 import lombok.Data;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Data
 @Introspected
-public class ProjectDto {
+public class ClientDto {
     Long id;
 
     @NotBlank
-    String name;
+    String firstName;
 
-    ClientDto client;
+    @NotBlank
+    String secondName;
 
-    List<FreelancerDto> freelancers;
+    @Email
+    String email;
+
+    List<ProjectDto> projects;
 }

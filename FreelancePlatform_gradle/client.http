@@ -15,6 +15,22 @@ GET http://localhost:8080/freelancer/1
 ### Get an non-existing freelancer
 GET http://localhost:8080/freelancer/100500
 
+### Create a client
+POST http://localhost:8080/client
+Content-Type: application/json
+
+{
+  "firstName": "first",
+  "secondName": "second",
+  "email": "a@a.a"
+}
+
+### Get an existing client
+GET http://localhost:8080/client/1
+
+### Get an non-existing freelancer
+GET http://localhost:8080/client/100500
+
 ### Create a project
 POST http://localhost:8080/project
 Content-Type: application/json
