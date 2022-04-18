@@ -1,7 +1,6 @@
 package com.stakkato95.freelance.api.controller;
 
 import com.stakkato95.freelance.api.dto.FreelancerDto;
-import com.stakkato95.freelance.api.mapper.CycleAvoidingMappingContext;
 import com.stakkato95.freelance.api.mapper.FreelancerMapper;
 import com.stakkato95.freelance.repository.FreelancerRepository;
 import io.micronaut.http.HttpResponse;
@@ -31,14 +30,11 @@ public class FreelancerController {
     @Inject
     FreelancerRepository repo;
 
-    @Inject
-    CycleAvoidingMappingContext ctx;
-
     @Post
     HttpResponse<FreelancerDto> create(@Body @Valid FreelancerDto dto) {
-        var entity = MAPPER.toEntity(dto, ctx);
+        var entity = MAPPER.toEntity(dto);
         var savedEntity = repo.save(entity);
-        var savedDto = MAPPER.toDto(savedEntity, ctx);
+        var savedDto = MAPPER.toDto(savedEntity);
         return HttpResponse
                 .created(savedDto)
                 .headers(headers -> headers.location(createdLocation(ENDPOINT, savedDto.getId())));
@@ -48,7 +44,7 @@ public class FreelancerController {
     HttpResponse<FreelancerDto> get(Long id) {
         var freelancer = repo.findById(id);
         return freelancer
-                .map(f -> MAPPER.toDto(f, ctx))
+                .map(MAPPER::toDto)
                 .map(HttpResponse::ok)
                 .orElse(HttpResponse.notFound());
     }
