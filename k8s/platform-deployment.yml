@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: platform-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: platform-app
+  template:
+    metadata:
+      labels:
+        app: platform-app
+    spec:
+      containers:
+      - name: platform
+        image: stakkato95/freelance-platform
+        env:
+        - name: POSTGRES_HOST
+          value: "postgres-service.default.svc.cluster.local"
+        - name: POSTGRES_PORT
+          value: "5432"
+        ports:
+        - name: platform-port
+          containerPort: 8080
