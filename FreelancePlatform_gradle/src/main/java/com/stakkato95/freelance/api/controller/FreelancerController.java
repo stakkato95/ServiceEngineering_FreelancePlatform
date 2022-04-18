@@ -2,7 +2,7 @@ package com.stakkato95.freelance.api.controller;
 
 import com.stakkato95.freelance.api.dto.FreelancerDto;
 import com.stakkato95.freelance.api.mapper.FreelancerMapper;
-import com.stakkato95.freelance.repository.FreelancerRepository;
+import com.stakkato95.freelance.service.FreelancerService;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
@@ -29,12 +29,12 @@ public class FreelancerController {
     FreelancerMapper mapper;
 
     @Inject
-    FreelancerRepository repo;
+    FreelancerService service;
 
     @Post
     HttpResponse<FreelancerDto> create(@Body @Valid FreelancerDto dto) {
         var entity = mapper.toEntity(dto);
-        var savedEntity = repo.save(entity);
+        var savedEntity = service.createFreelancer(entity);
         var savedDto = mapper.toDto(savedEntity);
         return HttpResponse
                 .created(savedDto)
@@ -43,8 +43,7 @@ public class FreelancerController {
 
     @Get("/{id}")
     HttpResponse<FreelancerDto> get(Long id) {
-        var freelancer = repo.findById(id);
-        return freelancer
+        return service.findFreelancer(id)
                 .map(mapper::toDto)
                 .map(HttpResponse::ok)
                 .orElse(HttpResponse.notFound());
