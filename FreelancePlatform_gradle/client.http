@@ -24,3 +24,6 @@ Content-Type: application/json
   "clientId": 1,
   "freelancerIds": [1]
 }
+
+### Get an existing project
+GET http://localhost:8080/project/1

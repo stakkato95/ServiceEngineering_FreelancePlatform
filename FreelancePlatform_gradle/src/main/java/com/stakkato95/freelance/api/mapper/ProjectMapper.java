@@ -13,8 +13,6 @@ public interface ProjectMapper {
 
     ProjectMapper INSTANCE = Mappers.getMapper(ProjectMapper.class);
 
-    @Mapping(target = "freelancers", ignore = true)
-//    @Mapping(target = "client", ignore = true)
     ProjectDto toDto(Project entity);
 
     @Mapping(target = "freelancers", ignore = true)
