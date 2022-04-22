@@ -49,3 +49,4 @@ GET http://localhost:{{port}}/health/liveness
 
 ### Check readiness
 GET http://localhost:{{port}}/health/readiness
+
