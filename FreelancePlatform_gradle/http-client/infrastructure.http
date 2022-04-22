@@ -1,0 +1,11 @@
+### Check liveness
+GET http://localhost:{{port}}/health/liveness
+
+### Check readiness
+GET http://localhost:{{port}}/health/readiness
+
+### Swagger documentation (yaml)
+GET http://localhost:8080/swagger/freelance-platform-0.1.yml
+
+### Swagger documentation (html)
+http://localhost:8080/swagger-ui/index.html

@@ -69,6 +69,10 @@ dependencies {
 
     implementation 'org.mapstruct:mapstruct:1.5.0.RC1'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.0.RC1'
+
+    implementation 'io.swagger.core.v3:swagger-annotations'
+//    implementation("io.micronaut:micronaut-management:4.0.1")
+    annotationProcessor 'io.micronaut.openapi:micronaut-openapi:4.0.1'
 }
 
 

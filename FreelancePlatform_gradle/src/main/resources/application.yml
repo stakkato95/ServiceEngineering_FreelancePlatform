@@ -1,6 +1,14 @@
 micronaut:
   application:
     name: freelanceplatform
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+      swagger-ui:
+        paths: classpath:META-INF/swagger/views/swagger-ui
+        mapping: /swagger-ui/**
 
 datasources:
   default:
@@ -24,3 +32,4 @@ netty:
   default:
     allocator:
       max-order: 3
+
