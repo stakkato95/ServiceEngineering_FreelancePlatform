@@ -10,15 +10,18 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.ExecuteOn;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.Valid;
 
+import static com.stakkato95.freelance.ApiConfig.OPEN_API_TAG;
 import static com.stakkato95.freelance.ApiConfig.createdLocation;
 import static com.stakkato95.freelance.api.controller.FreelancerController.ENDPOINT;
 
 @Slf4j
+@Tag(name = OPEN_API_TAG)
 @ExecuteOn(TaskExecutors.IO)
 @Controller(ENDPOINT)
 public class FreelancerController {
