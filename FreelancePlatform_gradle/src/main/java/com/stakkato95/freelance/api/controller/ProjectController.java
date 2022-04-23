@@ -11,6 +11,7 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.ExecuteOn;
+import io.micronaut.tracing.annotation.NewSpan;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +36,7 @@ public class ProjectController {
     @Inject
     ProjectService service;
 
+    @NewSpan
     @Post
     HttpResponse<ProjectDto> create(@Body @Valid NewProjectDto dto) {
         var newProject = mapper.toEntity(dto);
@@ -45,6 +47,7 @@ public class ProjectController {
                 .headers(headers -> headers.location(createdLocation(ENDPOINT, savedDto.getId())));
     }
 
+    @NewSpan
     @Get("/{id}")
     HttpResponse<ProjectDto> get(Long id) {
         return service.findProject(id)

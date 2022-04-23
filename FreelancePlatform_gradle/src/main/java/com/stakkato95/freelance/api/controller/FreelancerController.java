@@ -10,6 +10,7 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.ExecuteOn;
+import io.micronaut.tracing.annotation.NewSpan;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +35,7 @@ public class FreelancerController {
     @Inject
     FreelancerService service;
 
+    @NewSpan
     @Post
     HttpResponse<FreelancerDto> create(@Body @Valid FreelancerDto dto) {
         var entity = mapper.toEntity(dto);
@@ -44,6 +46,7 @@ public class FreelancerController {
                 .headers(headers -> headers.location(createdLocation(ENDPOINT, savedDto.getId())));
     }
 
+    @NewSpan
     @Get("/{id}")
     HttpResponse<FreelancerDto> get(Long id) {
         return service.findFreelancer(id)

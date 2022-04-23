@@ -1,0 +1,3 @@
+tracing:
+  jaeger:
+    enabled: false # no need for tracing in tests

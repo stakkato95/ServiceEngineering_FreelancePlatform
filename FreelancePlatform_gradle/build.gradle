@@ -72,6 +72,11 @@ dependencies {
 
     implementation 'io.swagger.core.v3:swagger-annotations'
     annotationProcessor 'io.micronaut.openapi:micronaut-openapi:4.0.1'
+
+    runtimeOnly 'io.jaegertracing:jaeger-thrift'
+    implementation 'io.micronaut:micronaut-tracing'
+    implementation 'io.micronaut.tracing:micronaut-tracing-jaeger'
+    implementation 'io.micronaut.tracing:micronaut-tracing-core:4.1.1'
 }
 
 

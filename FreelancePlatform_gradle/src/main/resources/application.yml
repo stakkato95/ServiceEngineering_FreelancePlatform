@@ -33,3 +33,8 @@ netty:
     allocator:
       max-order: 3
 
+tracing:
+  jaeger:
+    enabled: true
+    sampler:
+      probability: 1 # collect 100% of all traces
