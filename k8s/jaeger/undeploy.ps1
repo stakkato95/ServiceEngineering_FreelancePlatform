@@ -16,4 +16,4 @@ kubectl delete -f https://github.com/jetstack/cert-manager/releases/download/v1.
 # 1 deploy ingress
 # https://kubernetes.github.io/ingress-nginx/deploy/#docker-desktop
 kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/aws/deploy.yaml
-sleep(240);
+# sleep(240);
