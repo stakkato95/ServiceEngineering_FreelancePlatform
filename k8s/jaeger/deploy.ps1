@@ -27,6 +27,7 @@ echo "`n`n"
 # https://github.com/jaegertracing/jaeger-operator
 kubectl apply -f jaeger-all-in-one.yaml -n observability
 echo "waiting for all-in-one to start..."
+sleep(5);
 kubectl wait --for=condition=ready -n observability --timeout=240s pod --all
 echo "`n`n"
 
