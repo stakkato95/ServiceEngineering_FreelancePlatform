@@ -9,9 +9,6 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "jakarta", uses = NestedMapper.class)
 public interface ProjectMapper {
-
-    ProjectMapper INSTANCE = Mappers.getMapper(ProjectMapper.class);
-
     ProjectDto toDto(Project entity);
 
     NewProject toEntity(NewProjectDto dto);
