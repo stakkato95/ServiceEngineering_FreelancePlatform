@@ -2,8 +2,13 @@ package com.stakkato95.freelance.repository;
 
 import com.stakkato95.freelance.domain.Freelancer;
 import io.micronaut.data.annotation.Repository;
-import io.micronaut.data.jpa.repository.JpaRepository;
+
+import javax.persistence.EntityManager;
 
 @Repository
-public abstract class FreelancerRepository implements JpaRepository<Freelancer, Long> {
+public abstract class FreelancerRepository extends Repo<Freelancer> {
+
+    public FreelancerRepository(EntityManager em) {
+        super(em);
+    }
 }

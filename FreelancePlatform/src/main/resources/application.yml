@@ -1,10 +1,18 @@
 micronaut:
   application:
     name: freelanceplatform
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+      swagger-ui:
+        paths: classpath:META-INF/swagger/views/swagger-ui
+        mapping: /swagger-ui/**
 
 datasources:
   default:
-    url: jdbc:postgresql://localhost:5432/freelance
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:31111}/postgres
     driverClassName: org.postgresql.Driver
     username: postgres
     password: '12345'
@@ -15,7 +23,18 @@ jpa.default.properties.hibernate.hbm2ddl.auto: create-drop
 jpa.default.properties.hibernate.hbm2ddl.show_sql: true
 jpa.default.entity-scan.packages: com.stakkato95.freelance
 
+endpoints:
+  health:
+    enabled: true
+    sensitive: false
+
 netty:
   default:
     allocator:
       max-order: 3
+
+tracing:
+  jaeger:
+    enabled: true
+    sampler:
+      probability: 1 # collect 100% of all traces
