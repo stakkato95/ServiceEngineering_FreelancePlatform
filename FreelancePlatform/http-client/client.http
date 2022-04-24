@@ -28,7 +28,7 @@ Content-Type: application/json
 ### Get an existing client
 GET http://localhost:{{port}}/client/1
 
-### Get an non-existing freelancer
+### Get an non-existing client
 GET http://localhost:{{port}}/client/100500
 
 ### Create a project
